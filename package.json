@@ -4,7 +4,7 @@
 	"description": "Boostrap a Next.js project with components, API routes, and utilities.",
 	"scripts": {
 		"dev": "next dev",
-		"clean": "node clean.mjs",
+		"clean": "node clean.js",
 		"lint": "xo --prettier",
 		"fix": "xo --prettier --fix",
 		"format": "prettier -w .",
@@ -12,7 +12,8 @@
 		"typescript:check": "tsc --noEmit --p tsconfig.json",
 		"build": "tsc --p tsconfig.build.json",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
+		"build-storybook": "storybook build",
+		"prepublishOnly": "npm run clean && npm run build && npm run format:check && npm run typescript:check && npm run lint"
 	},
 	"dependencies": {
 		"@heroicons/react": "^2.1.5",
