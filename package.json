@@ -4,11 +4,13 @@
 	"description": "Boostrap a Next.js project with components, API routes, and utilities.",
 	"scripts": {
 		"dev": "next dev",
+		"clean": "node clean.mjs",
 		"lint": "xo --prettier",
 		"fix": "xo --prettier --fix",
 		"format": "prettier -w .",
 		"format:check": "prettier --check .",
 		"typescript:check": "tsc --noEmit --p tsconfig.json",
+		"build": "tsc --p tsconfig.build.json",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build"
 	},
@@ -35,6 +37,7 @@
 		"@types/node": "20.14.12",
 		"@types/react": "18.3.3",
 		"eslint-config-xo-react": "^0.27.0",
+		"glob": "^11.0.0",
 		"prettier": "^3.3.3",
 		"storybook": "^8.2.5",
 		"typescript": "5.5.4",

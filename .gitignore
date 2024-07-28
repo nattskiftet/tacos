@@ -1,3 +1,9 @@
 .next
 node_modules
 .vercel
+tsconfig.tsbuildinfo
+tsconfig.build.tsbuildinfo
+utilities/**/*.d.ts
+utilities/**/*.js
+components/**/*.d.ts
+components/**/*.js

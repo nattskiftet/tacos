@@ -1,0 +1,13 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"target": "es6",
+		"module": "commonjs",
+		"noEmit": false,
+		"lib": ["es2022", "es7", "es6", "dom"],
+		"skipLibCheck": true,
+		"jsx": "react",
+		"declaration": true
+	},
+	"include": ["components/**/*.ts", "components/**/*.tsx", "utilities/**/*.ts"]
+}

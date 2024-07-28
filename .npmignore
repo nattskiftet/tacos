@@ -1,3 +1,5 @@
 app
 node_modules
 stories
+tsconfig.tsbuildinfo
+tsconfig.build.tsbuildinfo
