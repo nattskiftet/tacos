@@ -1,7 +1,7 @@
 import React from 'react';
 import type {Meta, StoryObj} from '@storybook/react';
-import Revealer from '@/components/revealer';
-import {fontFamilyStyles} from '@/components/font';
+import Revealer from '../components/revealer';
+import {fontFamilyStyles} from '../components/font';
 
 const meta: Meta<typeof Revealer> = {
 	title: 'Revealer',

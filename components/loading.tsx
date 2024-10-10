@@ -1,7 +1,7 @@
 import React, {type ReactNode} from 'react';
 import {ProgressBar, type ProgressBarProps} from 'react-aria-components';
 import {css} from '@kuma-ui/core';
-import cx from '@/utilities/cx';
+import cx from '../utilities/cx';
 
 export default function LoadingSpinner({
 	className,

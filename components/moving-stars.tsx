@@ -8,7 +8,7 @@ import React, {
 	useState,
 } from 'react';
 import {css} from '@kuma-ui/core';
-import cx from '@/utilities/cx';
+import cx from '../utilities/cx';
 
 function getStar(canvasWidth: number, canvasHeight: number, speed = 1) {
 	const extendedCanvasWidth = canvasWidth * 1.5;

@@ -8,7 +8,7 @@ import React, {
 	useState,
 } from 'react';
 import {css} from '@kuma-ui/core';
-import cx from '@/utilities/cx';
+import cx from '../utilities/cx';
 
 const themes = {
 	main: [

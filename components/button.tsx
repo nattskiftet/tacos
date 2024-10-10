@@ -8,13 +8,13 @@ import {
 	type LinkProps,
 } from 'react-aria-components';
 import {css} from '@kuma-ui/core';
+import cx from '../utilities/cx';
 import {SkeletonInstance} from './skeleton';
 import LoadingSpinner from './loading';
 import {fontFamilyStyles} from './font';
 import Box from './box';
 import MovingGradients from './moving-gradients';
 import MovingStars from './moving-stars';
-import cx from '@/utilities/cx';
 
 function ButtonIcon({
 	iconLeft,

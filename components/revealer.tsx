@@ -9,7 +9,7 @@ import React, {
 	type HTMLAttributes,
 } from 'react';
 import {css} from '@kuma-ui/core';
-import cx from '@/utilities/cx';
+import cx from '../utilities/cx';
 
 export default function Revealer({
 	delay = 1,

@@ -1,7 +1,7 @@
 import {css} from '@kuma-ui/core';
 import React, {type ReactNode} from 'react';
+import cx from '../utilities/cx';
 import Atom, {type AtomProperties} from './atom';
-import cx from '@/utilities/cx';
 
 export default function Box({
 	className,

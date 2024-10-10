@@ -1,7 +1,7 @@
 import React from 'react';
 import type {Meta, StoryObj} from '@storybook/react';
-import Skeleton from '@/components/skeleton';
-import {fontFamilyStyles} from '@/components/font';
+import Skeleton from '../components/skeleton';
+import {fontFamilyStyles} from '../components/font';
 
 const meta: Meta<typeof Skeleton> = {
 	title: 'Skeleton',

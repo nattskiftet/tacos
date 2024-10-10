@@ -1,6 +1,6 @@
 import React from 'react';
 import type {Meta, StoryObj} from '@storybook/react';
-import AriaText from '@/components/aria-text';
+import AriaText from '../components/aria-text';
 
 const meta: Meta<typeof AriaText> = {
 	title: 'Aria Text',
