@@ -1,6 +1,6 @@
 import React from 'react';
 import type {Meta, StoryObj} from '@storybook/react';
-import MovingStars from '@/components/moving-stars';
+import MovingStars from '../components/moving-stars';
 
 const meta: Meta<typeof MovingStars> = {
 	title: 'Moving Stars',

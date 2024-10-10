@@ -1,7 +1,7 @@
 import React, {type ReactNode} from 'react';
 import {KumaRegistry} from '@kuma-ui/next-plugin/registry';
 import '../global.css';
-import ThemeSetter from '@/components/theme-setter';
+import ThemeSetter from '../components/theme-setter';
 
 type Parameters = {
 	locale: string;

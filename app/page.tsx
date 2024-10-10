@@ -1,6 +1,6 @@
 import {css} from '@kuma-ui/core';
 import React, {type ReactNode} from 'react';
-import Button from '@/components/button';
+import Button from '../components/button';
 
 export default function Home(): ReactNode {
 	return (
