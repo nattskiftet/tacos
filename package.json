@@ -4,45 +4,43 @@
 	"description": "Boostrap a Next.js project with components, API routes, and utilities.",
 	"scripts": {
 		"dev": "next dev",
-		"clean": "node clean.js",
 		"lint": "xo --prettier",
 		"fix": "xo --prettier --fix",
 		"format": "prettier -w .",
 		"format:check": "prettier --check .",
 		"typescript:check": "tsc --noEmit --p tsconfig.json",
-		"build": "tsc --p tsconfig.build.json",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"prepublishOnly": "npm run clean && npm run build && npm run format:check && npm run typescript:check && npm run lint"
+		"prepublishOnly": "npm run format:check && npm run typescript:check && npm run lint"
 	},
 	"dependencies": {
 		"@heroicons/react": "^2.1.5",
-		"@kuma-ui/core": "^1.5.7",
-		"next": "^14.2.5",
+		"@kuma-ui/core": "^1.5.8",
+		"next": "^15.0.1",
 		"react": "^18.3.1",
-		"react-aria-components": "^1.3.0",
+		"react-aria-components": "^1.4.1",
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
-		"@chromatic-com/storybook": "^1.6.1",
-		"@kuma-ui/next-plugin": "^1.3.1",
-		"@storybook/addon-essentials": "^8.2.5",
-		"@storybook/addon-interactions": "^8.2.5",
-		"@storybook/addon-links": "^8.2.5",
-		"@storybook/addon-onboarding": "^8.2.5",
+		"@chromatic-com/storybook": "^2.0.2",
+		"@kuma-ui/next-plugin": "^1.3.2",
+		"@storybook/addon-essentials": "^8.3.6",
+		"@storybook/addon-interactions": "^8.3.6",
+		"@storybook/addon-links": "^8.3.6",
+		"@storybook/addon-onboarding": "^8.3.6",
 		"@storybook/blocks": "^8.2.5",
-		"@storybook/html": "^8.2.5",
-		"@storybook/nextjs": "^8.2.5",
+		"@storybook/html": "^8.3.6",
+		"@storybook/nextjs": "^8.3.6",
 		"@storybook/react": "^8.2.5",
 		"@storybook/test": "^8.2.5",
-		"@types/node": "20.14.12",
-		"@types/react": "18.3.3",
+		"@types/node": "^22.7.9",
+		"@types/react": "^18.3.12",
 		"eslint-config-xo-react": "^0.27.0",
 		"glob": "^11.0.0",
 		"prettier": "^3.3.3",
-		"storybook": "^8.2.5",
-		"typescript": "5.5.4",
-		"xo": "^0.58.0"
+		"storybook": "^8.3.6",
+		"typescript": "^5.6.3",
+		"xo": "^0.59.3"
 	},
 	"xo": {
 		"extends": "eslint-config-xo-react",
@@ -61,6 +59,7 @@
 			}
 		],
 		"rules": {
+			"n/file-extension-in-import": 0,
 			"import/extensions": 0,
 			"react/boolean-prop-naming": [
 				"error",

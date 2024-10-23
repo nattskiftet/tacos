@@ -3,86 +3,39 @@
 import React, {
 	type CSSProperties,
 	type ReactNode,
+	useCallback,
 	useEffect,
 	useRef,
 	useState,
+	useMemo,
 } from 'react';
 import {css} from '@kuma-ui/core';
 import cx from '../utilities/cx';
 
-const themes = {
-	main: [
-		[73, 51, 205],
-		[97, 24, 190],
-		[116, 42, 236],
-		[189, 0, 255],
-		[53, 2, 195],
-		[69, 28, 157],
-		[49, 37, 204],
-	],
-	noir: [
-		[20, 20, 20],
-		[30, 30, 30],
-		[40, 40, 40],
-		[50, 50, 50],
-	],
-};
+type RgbList = Array<[number, number, number]>;
 
-let colors = themes.noir;
-
-if (typeof window !== 'undefined' && 'MutationObserver' in window) {
-	const observer = new MutationObserver(() => {
-		const {variant} = document.documentElement.dataset;
-
-		colors =
-			variant && variant in themes
-				? themes[variant as keyof typeof themes]
-				: themes.main;
-	});
-
-	observer.observe(document.documentElement, {attributes: true});
-}
-
-const multiplier = 1.25;
-const colorsLength = colors.length;
-
-function getGradient(canvasWidth: number, canvasHeight: number, speed = 1) {
-	const randomness = Math.random();
-	const color = colors[Math.floor(colorsLength * randomness)];
-	const extendedCanvasWidth = canvasWidth * multiplier;
-	const quarterExtendedCanvasWidth = canvasWidth * 0.25;
-	const extendedCanvasHeight = canvasHeight * multiplier;
-	const quarterExtendedCanvasHeight = canvasHeight * 0.25;
-	const startPositionX =
-		extendedCanvasWidth * Math.random() - quarterExtendedCanvasWidth;
-	const startPositionY =
-		extendedCanvasHeight * Math.random() - quarterExtendedCanvasHeight;
-	const maximumDimension = Math.max(extendedCanvasWidth, extendedCanvasHeight);
-
-	return {
-		color,
-		size: maximumDimension * randomness + maximumDimension / 2,
-		opacity: 0,
-		speed: Math.max(0.1, (randomness / 2) * speed),
-		startPosition: [startPositionX, startPositionY],
-		currentPosition: [startPositionX, startPositionY],
-		targetPosition: [
-			extendedCanvasWidth * Math.random() - quarterExtendedCanvasWidth,
-			extendedCanvasHeight * Math.random() - quarterExtendedCanvasHeight,
-		],
-	};
-}
+const defaultColors: RgbList = [
+	[73, 51, 205],
+	[97, 24, 190],
+	[116, 42, 236],
+	[189, 0, 255],
+	[53, 2, 195],
+	[69, 28, 157],
+	[49, 37, 204],
+];
 
 export type MovingGradientsProperties = {
 	readonly className?: string;
-	readonly maxGradientsCount?: number;
+	readonly colors?: RgbList;
+	readonly maximumGradientsCount?: number;
 	readonly speed?: number;
 	readonly opacity?: number;
 };
 
 export default function MovingGradients({
 	className,
-	maxGradientsCount = 10,
+	colors = defaultColors,
+	maximumGradientsCount = 10,
 	speed = 1,
 	opacity = 0.2,
 }: MovingGradientsProperties): ReactNode {
@@ -91,12 +44,44 @@ export default function MovingGradients({
 	const [width, setWidth] = useState(0);
 	const [height, setHeight] = useState(0);
 
-	useEffect(() => {
-		const gradients = Array.from({length: maxGradientsCount}).map(() =>
-			getGradient(width, height, speed)
+	const colorsLength = useMemo(() => colors.length, [colors]);
+	const getGradient = useCallback(() => {
+		const multiplier = 1.25;
+		const randomness = Math.random();
+		const color = colors[Math.floor(colorsLength * randomness)];
+		const extendedCanvasWidth = width * multiplier;
+		const quarterExtendedCanvasWidth = width * 0.25;
+		const extendedCanvasHeight = height * multiplier;
+		const quarterExtendedCanvasHeight = height * 0.25;
+		const startPositionX =
+			extendedCanvasWidth * Math.random() - quarterExtendedCanvasWidth;
+		const startPositionY =
+			extendedCanvasHeight * Math.random() - quarterExtendedCanvasHeight;
+		const maximumDimension = Math.max(
+			extendedCanvasWidth,
+			extendedCanvasHeight
 		);
 
-		let currentGradientsCount = maxGradientsCount;
+		return {
+			color,
+			size: maximumDimension * randomness + maximumDimension / 2,
+			opacity: 0,
+			speed: Math.max(0.1, (randomness / 2) * speed),
+			startPosition: [startPositionX, startPositionY],
+			currentPosition: [startPositionX, startPositionY],
+			targetPosition: [
+				extendedCanvasWidth * Math.random() - quarterExtendedCanvasWidth,
+				extendedCanvasHeight * Math.random() - quarterExtendedCanvasHeight,
+			],
+		};
+	}, [colors, colorsLength, speed, width, height]);
+
+	useEffect(() => {
+		const gradients = Array.from({length: maximumGradientsCount}).map(() =>
+			getGradient()
+		);
+
+		let currentGradientsCount = maximumGradientsCount;
 		let isCancelled = false;
 		let frame: number | undefined;
 
@@ -205,11 +190,11 @@ export default function MovingGradients({
 		frame = requestAnimationFrame(loop);
 
 		const interval = setInterval(() => {
-			let newGradientsCount = 10 - currentGradientsCount;
+			let newGradientsCount = maximumGradientsCount - currentGradientsCount;
 
 			if (newGradientsCount > 0) {
 				while (newGradientsCount) {
-					gradients.push(getGradient(width, height));
+					gradients.push(getGradient());
 					newGradientsCount -= 1;
 					currentGradientsCount += 1;
 				}
@@ -225,7 +210,7 @@ export default function MovingGradients({
 
 			clearInterval(interval);
 		};
-	}, [context, width, height, maxGradientsCount, speed]);
+	}, [context, width, height, maximumGradientsCount, speed, getGradient]);
 
 	useEffect(() => {
 		if (canvas.current) {

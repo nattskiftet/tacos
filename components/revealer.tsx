@@ -15,7 +15,7 @@ export default function Revealer({
 	delay = 1,
 	animationDelay = 1,
 	duration = 555,
-	threshold = 0.3,
+	threshold = 0.05,
 	distance = 20,
 	isMoving = true,
 	isCentered = false,
@@ -33,7 +33,7 @@ export default function Revealer({
 	readonly isCentered?: boolean;
 	readonly canReveal?: boolean;
 	readonly className?: string;
-}): ReactNode {
+}) {
 	const reference = useRef<HTMLDivElement>(null);
 	const [internalCanReveal, setInternalCanReveal] = useState(false);
 	const [isVisible, setIsVisible] = useState(() =>

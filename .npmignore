@@ -1,5 +1,6 @@
 .next
 .vercel
+.storybook
 app
 node_modules
 stories

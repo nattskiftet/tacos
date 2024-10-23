@@ -10,39 +10,20 @@ import React, {
 import {css} from '@kuma-ui/core';
 import cx from '../utilities/cx';
 
-function getStar(canvasWidth: number, canvasHeight: number, speed = 1) {
-	const extendedCanvasWidth = canvasWidth * 1.5;
-	const quarterExtendedCanvasWidth = canvasWidth * 0.25;
-	const extendedCanvasHeight = canvasHeight * 1.5;
-	const quarterExtendedCanvasHeight = canvasHeight * 0.25;
-	const startPositionX =
-		extendedCanvasWidth * Math.random() - quarterExtendedCanvasWidth;
-	const startPositionY =
-		extendedCanvasHeight * Math.random() - quarterExtendedCanvasHeight;
-
-	return {
-		size: Math.max(1, 5 * Math.random()),
-		opacity: 0,
-		speed: Math.max(0.1, (Math.random() / 2) * speed),
-		startPosition: [startPositionX, startPositionY],
-		currentPosition: [startPositionX, startPositionY],
-		targetPosition: [
-			extendedCanvasWidth * Math.random() - quarterExtendedCanvasWidth,
-			extendedCanvasHeight * Math.random() - quarterExtendedCanvasHeight,
-		],
-	};
-}
-
 export type MovingStarsProperties = {
 	readonly className?: string;
-	readonly maxStarsCount?: number;
+	readonly minimumSize?: number;
+	readonly maximumSize?: number;
+	readonly maximumStarsCount?: number;
 	readonly speed?: number;
 	readonly hasMask?: boolean;
 };
 
 export default function MovingStars({
 	className,
-	maxStarsCount = 50,
+	minimumSize = 1,
+	maximumSize = 5,
+	maximumStarsCount = 50,
 	speed = 1,
 	hasMask = false,
 }: MovingStarsProperties): ReactNode {
@@ -51,17 +32,38 @@ export default function MovingStars({
 	const [width, setWidth] = useState(0);
 	const [height, setHeight] = useState(0);
 
+	const getStar = useCallback(() => {
+		const extendedCanvasWidth = width * 1.5;
+		const quarterExtendedCanvasWidth = width * 0.25;
+		const extendedCanvasHeight = height * 1.5;
+		const quarterExtendedCanvasHeight = height * 0.25;
+		const startPositionX =
+			extendedCanvasWidth * Math.random() - quarterExtendedCanvasWidth;
+		const startPositionY =
+			extendedCanvasHeight * Math.random() - quarterExtendedCanvasHeight;
+
+		return {
+			size: Math.max(minimumSize, maximumSize * Math.random()),
+			opacity: 0,
+			speed: Math.max(0.1, (Math.random() / 2) * speed),
+			startPosition: [startPositionX, startPositionY],
+			currentPosition: [startPositionX, startPositionY],
+			targetPosition: [
+				extendedCanvasWidth * Math.random() - quarterExtendedCanvasWidth,
+				extendedCanvasHeight * Math.random() - quarterExtendedCanvasHeight,
+			],
+		};
+	}, [width, height, speed, minimumSize, maximumSize]);
+
 	const getColor = useCallback(
 		() => (canvas.current ? getComputedStyle(canvas.current).color : '#000'),
 		[canvas]
 	);
 
 	useEffect(() => {
-		const stars = Array.from({length: maxStarsCount}).map(() =>
-			getStar(width, height, speed)
-		);
+		const stars = Array.from({length: maximumStarsCount}).map(() => getStar());
 
-		let currentStarsCount = maxStarsCount;
+		let currentStarsCount = maximumStarsCount;
 		let isCancelled = false;
 		let frame: number | undefined;
 		let color = getColor();
@@ -163,11 +165,11 @@ export default function MovingStars({
 
 		const interval = setInterval(() => {
 			color = getColor();
-			let newStarsCount = maxStarsCount - currentStarsCount;
+			let newStarsCount = maximumStarsCount - currentStarsCount;
 
 			if (newStarsCount > 0) {
 				while (newStarsCount) {
-					stars.push(getStar(width, height));
+					stars.push(getStar());
 					newStarsCount -= 1;
 					currentStarsCount += 1;
 				}
@@ -183,7 +185,7 @@ export default function MovingStars({
 
 			clearInterval(interval);
 		};
-	}, [context, width, height, speed, getColor, maxStarsCount]);
+	}, [context, width, height, speed, getColor, maximumStarsCount, getStar]);
 
 	useEffect(() => {
 		if (canvas.current) {

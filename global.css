@@ -30,16 +30,10 @@
 	--foreground-color: #fafafa;
 }
 
-:root:where([data-variant='noir']) {
-	--primary-color: #33323d;
-	--secondary-color: #000000;
-	--background-color: #0d0d0d;
-}
-
 html {
-	-webkit-font-smoothing: subpixel-antialiased;
 	background: var(--background-color);
 	color: var(--foreground-color);
+	-webkit-font-smoothing: subpixel-antialiased;
 }
 
 body {
