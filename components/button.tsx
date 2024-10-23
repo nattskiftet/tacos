@@ -241,14 +241,14 @@ export default function Button({
 				>
 					{showMovingGradients ? (
 						<MovingGradients
-							maxGradientsCount={movingGradientsCount}
+							maximumGradientsCount={movingGradientsCount}
 							opacity={1}
 						/>
 					) : null}
 
 					{showMovingStars ? (
 						<MovingStars
-							maxStarsCount={movingStarsCount}
+							maximumStarsCount={movingStarsCount}
 							className={css`
 								color: white;
 							`}

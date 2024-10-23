@@ -13,5 +13,5 @@ type Story = StoryObj<typeof MovingGradients>;
 
 export const MovingGradientsStory: Story = {
 	name: 'Moving Gradients',
-	args: {speed: 1, maxGradientsCount: 10},
+	args: {speed: 1, maximumGradientsCount: 10},
 };
