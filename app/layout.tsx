@@ -24,9 +24,7 @@ export default function Layout({
 				<ThemeSetter />
 			</head>
 
-			<body>
-				{children}
-			</body>
+			<body>{children}</body>
 		</html>
 	);
 }
