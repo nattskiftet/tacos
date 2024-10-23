@@ -1,6 +1,6 @@
 {
 	"name": "tacos",
-	"version": "0.0.6",
+	"version": "1.0.0",
 	"description": "Boostrap a Next.js project with components, API routes, and utilities.",
 	"scripts": {
 		"dev": "next dev",
