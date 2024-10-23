@@ -1,6 +1,5 @@
-import {css} from '@kuma-ui/core';
+import {css, cx} from '@linaria/core';
 import React, {type ReactNode} from 'react';
-import cx from '../utilities/cx';
 import Atom, {type AtomProperties} from './atom';
 
 export default function Box({

@@ -1,5 +1,5 @@
 import React, {type ReactNode} from 'react';
-import {css} from '@kuma-ui/core';
+import {css} from '@linaria/core';
 
 export const ariaTextStyles = css`
 	width: 1px;

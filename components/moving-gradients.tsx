@@ -9,8 +9,7 @@ import React, {
 	useState,
 	useMemo,
 } from 'react';
-import {css} from '@kuma-ui/core';
-import cx from '../utilities/cx';
+import {css, cx} from '@linaria/core';
 
 type RgbList = Array<[number, number, number]>;
 

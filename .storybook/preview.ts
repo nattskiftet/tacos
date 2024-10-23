@@ -18,8 +18,6 @@ const preview: Preview = {
 
 			useEffect(() => {
 				document.documentElement.style.backgroundColor = background;
-				document.documentElement.setAttribute('data-theme-variant', 'noir');
-
 				document.documentElement.setAttribute(
 					'data-theme',
 					background === '#0d0d0d' ? 'dark' : 'light'

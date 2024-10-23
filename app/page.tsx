@@ -1,4 +1,4 @@
-import {css} from '@kuma-ui/core';
+import {css} from '@linaria/core';
 import React, {type ReactNode} from 'react';
 import Button from '../components/button';
 
