@@ -7,7 +7,8 @@ import {
 	type ButtonProps,
 	type LinkProps,
 } from 'react-aria-components';
-import {css, cx} from '@linaria/core';
+import {css} from '@kuma-ui/core';
+import cx from '../utilities/cx';
 import {SkeletonInstance} from './skeleton';
 import LoadingSpinner from './loading';
 import {fontFamilyStyles} from './font';

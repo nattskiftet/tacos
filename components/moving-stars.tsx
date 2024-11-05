@@ -7,7 +7,8 @@ import React, {
 	useRef,
 	useState,
 } from 'react';
-import {css, cx} from '@linaria/core';
+import {css} from '@kuma-ui/core';
+import cx from '../utilities/cx';
 
 export type MovingStarsProperties = {
 	readonly className?: string;

@@ -1,5 +1,5 @@
-import withLinaria from 'next-with-linaria';
+import {withKumaUI} from '@kuma-ui/next-plugin';
 
-const nextConfig = {reactStrictMode: true};
+const nextConfig = withKumaUI({reactStrictMode: true}, {wasm: true});
 
-export default withLinaria(nextConfig);
+export default nextConfig;

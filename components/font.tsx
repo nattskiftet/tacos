@@ -1,6 +1,6 @@
 import React from 'react';
 import {Inter as interFont} from 'next/font/google';
-import {cx} from '@linaria/core';
+import cx from '../utilities/cx';
 import Atom, {type AtomProperties} from './atom';
 
 export const inter = interFont({subsets: ['latin'], display: 'swap'});

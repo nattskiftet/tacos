@@ -13,5 +13,11 @@ type Story = StoryObj<typeof MovingStars>;
 
 export const MovingStarsStory: Story = {
 	name: 'Moving Stars',
-	args: {speed: 1, maximumStarsCount: 50, hasMask: false},
+	args: {
+		minimumSize: 1,
+		maximumSize: 5,
+		maximumStarsCount: 50,
+		speed: 1,
+		hasMask: false,
+	},
 };

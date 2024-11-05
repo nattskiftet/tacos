@@ -1,7 +1,8 @@
 'use client';
 
 import React, {type ReactNode, useMemo, type HTMLAttributes} from 'react';
-import {css, cx} from '@linaria/core';
+import {css} from '@kuma-ui/core';
+import cx from '../utilities/cx';
 
 type SkeletonProperties = {
 	readonly width?: string | number;

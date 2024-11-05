@@ -27,6 +27,7 @@ const preview: Preview = {
 			return Story();
 		},
 	],
+	tags: ['autodocs'],
 };
 
 export default preview;

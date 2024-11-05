@@ -1,4 +1,5 @@
 import React, {type ReactNode} from 'react';
+import {KumaRegistry} from '@kuma-ui/next-plugin/registry';
 import '../global.css';
 import ThemeSetter from '../components/theme-setter';
 
@@ -24,7 +25,9 @@ export default function Layout({
 				<ThemeSetter />
 			</head>
 
-			<body>{children}</body>
+			<body>
+				<KumaRegistry>{children}</KumaRegistry>
+			</body>
 		</html>
 	);
 }

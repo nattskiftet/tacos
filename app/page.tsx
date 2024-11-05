@@ -1,8 +1,8 @@
-import {css} from '@linaria/core';
+import {css} from '@kuma-ui/core';
 import React, {type ReactNode} from 'react';
 import Button from '../components/button';
 
-export default function Home(): ReactNode {
+export default function Home() {
 	return (
 		<main
 			className={css`

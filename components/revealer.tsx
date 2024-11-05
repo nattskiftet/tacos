@@ -8,13 +8,14 @@ import React, {
 	useState,
 	type HTMLAttributes,
 } from 'react';
-import {css, cx} from '@linaria/core';
+import {css} from '@kuma-ui/core';
+import cx from '../utilities/cx';
 
 export default function Revealer({
 	delay = 1,
 	animationDelay = 1,
 	duration = 555,
-	threshold = 0.05,
+	threshold = 0,
 	distance = 20,
 	isMoving = true,
 	isCentered = false,
